@@ -9,7 +9,7 @@ const serviceAccount = require("./../service-account-key.json");
 
 // Replace the value with databaseURL given in firebase admin SDK configuration,
 // for example, https://my-app.firebaseio.com.
-const dbURL = "REPLACE_ME"
+const dbURL = "https://animeflix-a7fa7-default-rtdb.europe-west1.firebasedatabase.app"
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),

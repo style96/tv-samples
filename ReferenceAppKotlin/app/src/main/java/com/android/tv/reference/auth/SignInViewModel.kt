@@ -98,7 +98,7 @@ class SignInViewModel(private val userManager: UserManager) :
 
 class SignInViewModelFactory(private val userManager: UserManager) :
     ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
         var viewModel: T? = null
         if (modelClass.isAssignableFrom(modelClass)) {
             viewModel = modelClass.cast(SignInViewModel(userManager))!!

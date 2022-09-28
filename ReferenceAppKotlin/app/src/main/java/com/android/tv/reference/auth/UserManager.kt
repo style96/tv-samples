@@ -16,11 +16,13 @@
 package com.android.tv.reference.auth
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.android.tv.reference.R
 import com.android.tv.reference.shared.util.Result
 import com.google.android.gms.auth.api.identity.SignInCredential
+import timber.log.Timber
 
 /**
  * Handles sign in and sign out process and exposes methods used to authenticate the user and
@@ -30,13 +32,16 @@ class UserManager(
     private val server: AuthClient,
     private val storage: UserInfoStorage
 ) {
-    private val userInfoLiveData = MutableLiveData(storage.readUserInfo())
-    val userInfo: LiveData<UserInfo?> = userInfoLiveData
+    //private val userInfoLiveData = MutableLiveData(storage.readUserInfo().value)
 
-    fun isSignedIn() = userInfoLiveData.value != null
+    //private val userInfoLiveData = MutableLiveData(server.getUserInfo())
+    val userInfo: LiveData<UserInfo?> = storage.readUserInfo()
+
+    fun isSignedIn() = userInfo.value != null
 
     suspend fun signOut() {
-        userInfoLiveData.value?.let {
+        Timber.d("signOut : buraya geldi")
+        userInfo.value?.let {
             // TODO: log server error
             server.invalidateToken(it.token)
             clearUserInfo()
@@ -58,7 +63,7 @@ class UserManager(
     }
 
     suspend fun validateToken() {
-        userInfoLiveData.value?.let {
+        userInfo.value?.let {
             val result = server.validateToken(it.token)
             if (result is Result.Success) {
                 updateUserInfo(result.data)
@@ -69,27 +74,32 @@ class UserManager(
     }
 
     private fun updateUserInfo(userInfo: UserInfo) {
-        userInfoLiveData.postValue(userInfo)
+        Timber.d( "updateUserInfo: UserInfo = " + userInfo.token + " " + userInfo.displayName)
+        //userInfoLiveData.postValue(userInfo)
         storage.writeUserInfo(userInfo)
     }
 
     private fun clearUserInfo() {
-        userInfoLiveData.postValue(null)
+        //userInfoLiveData.postValue(null)
+        Timber.d("buraya geldi")
         storage.clearUserInfo()
     }
 
     companion object {
         const val signInFragmentId = R.id.action_global_signInFragment
-
+        const val TAG = "UserManager"
         @Volatile
         private var INSTANCE: UserManager? = null
 
         fun getInstance(context: Context): UserManager =
             INSTANCE ?: synchronized(this) {
-                INSTANCE ?: createDefault(context).also { INSTANCE = it }
+                INSTANCE ?: createDefault(context).also {
+                    Timber.d("context : $context")
+                    INSTANCE = it }
             }
 
         private fun createDefault(context: Context) =
-            UserManager(MockAuthClient(), DefaultUserInfoStorage(context))
+            UserManager(FirebaseAuthClient(), UserInfoRepository(UserInfoDatabase.getDatabase(context).userInfoDao()))
+
     }
 }

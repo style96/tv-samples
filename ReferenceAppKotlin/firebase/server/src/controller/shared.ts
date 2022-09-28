@@ -24,7 +24,7 @@ import * as cryptoRandomString from 'crypto-random-string';
  */
 
 // Shared config
-export const PACKAGE_NAME = functions.config().app.package_name;
+export const PACKAGE_NAME = "com.android.tv.reference";
 
 // Generate a cryptographically secure token string
 export async function generateToken(desiredLength: number, type: string) {

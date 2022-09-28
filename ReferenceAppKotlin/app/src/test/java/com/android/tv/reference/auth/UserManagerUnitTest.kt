@@ -16,6 +16,7 @@
 package com.android.tv.reference.auth
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.LiveData
 import com.android.tv.reference.shared.util.Result
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.runBlocking

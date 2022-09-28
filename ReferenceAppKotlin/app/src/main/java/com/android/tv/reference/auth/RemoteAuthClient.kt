@@ -26,7 +26,7 @@ import retrofit2.http.POST
  */
 class RemoteAuthClient : AuthClient {
     companion object {
-        const val BASE_URL = "https://example.com"
+        const val BASE_URL = "https://us-central1-animeflix-a7fa7.cloudfunctions.net"
     }
 
     private val service = Retrofit.Builder()

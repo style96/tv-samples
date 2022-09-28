@@ -1,0 +1,85 @@
+{
+  "project_info": {
+    "project_number": "217471695972",
+    "firebase_url": "https://animeflix-a7fa7-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "animeflix-a7fa7",
+    "storage_bucket": "animeflix-a7fa7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:217471695972:android:b224d2e8c455b6b2327371",
+        "android_client_info": {
+          "package_name": "com.android.tv.reference"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "217471695972-hh46fv3hegt2lv4k5dtu1rvslcee664a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.android.tv.reference",
+            "certificate_hash": "8825d0462019222d961bed9194ecdd5daedebb68"
+          }
+        },
+        {
+          "client_id": "217471695972-jkb4qtark1pu6rolbtiveh8rp7nmr24h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.android.tv.reference",
+            "certificate_hash": "571c2069a89872bd6e74cf947ef297b5e863e924"
+          }
+        },
+        {
+          "client_id": "217471695972-k0j5np0otj5nvb831fk1bk3uet48mp3e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJf9aK5uo6VOhpjlUVCgP20t5OqKXQwTk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "217471695972-k0j5np0otj5nvb831fk1bk3uet48mp3e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:217471695972:android:3ede5278aa2550e7327371",
+        "android_client_info": {
+          "package_name": "com.example.animeflix"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "217471695972-k0j5np0otj5nvb831fk1bk3uet48mp3e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJf9aK5uo6VOhpjlUVCgP20t5OqKXQwTk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "217471695972-k0j5np0otj5nvb831fk1bk3uet48mp3e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

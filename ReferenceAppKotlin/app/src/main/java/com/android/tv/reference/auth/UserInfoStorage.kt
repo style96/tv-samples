@@ -17,14 +17,17 @@ package com.android.tv.reference.auth
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
 import androidx.core.content.edit
+import androidx.lifecycle.LiveData
 import androidx.preference.PreferenceManager
+import timber.log.Timber
 
 /**
  * An identity storage persists identity data such as user information and ID token locally.
  */
 interface UserInfoStorage {
-    fun readUserInfo(): UserInfo?
+    fun readUserInfo(): LiveData<UserInfo?>
     fun writeUserInfo(userInfo: UserInfo)
     fun clearUserInfo()
 }
@@ -33,14 +36,17 @@ interface UserInfoStorage {
  * SharedPreferences-backed identity storage. Production apps should prefer a more sophisticated
  * mechanism such as Room.
  */
+/*
 class DefaultUserInfoStorage(context: Context) : UserInfoStorage {
     private val KEY_PREFIX = "userInfo_"
     private val sharedPreferences: SharedPreferences =
         PreferenceManager.getDefaultSharedPreferences(context)
 
     override fun readUserInfo(): UserInfo? {
+        Timber.d("readUserInfo")
         return getString("token")?.let { token ->
             val displayName = getString("displayName")
+            Timber.d("readUserInfo: token = $token  ,  displayName = $displayName")
             return UserInfo(token, displayName ?: "")
         }
     }
@@ -76,3 +82,4 @@ class DefaultUserInfoStorage(context: Context) : UserInfoStorage {
         }
     }
 }
+*/

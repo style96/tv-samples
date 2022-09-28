@@ -18,11 +18,11 @@ import {assert} from "chai";
 import * as firebaseTest from 'firebase-functions-test';
 
 // Example for database URL - https://my-app.firebaseio.com
-const dbURL = "REPLACE_ME"
+const dbURL = "https://animeflix-a7fa7-default-rtdb.europe-west1.firebasedatabase.app"
 // Example for projectId - my-app
-const projectIdentifier = "REPLACE_ME"
+const projectIdentifier = "animeflix-a7fa7"
 // Example for storageBucket - my-app.appspot.com
-const StorageBucketId = "REPLACE_ME"
+const StorageBucketId = "animeflix-a7fa7.appspot.com"
 
 const test = firebaseTest({
   databaseURL: dbURL,
@@ -36,7 +36,7 @@ test.mockConfig({
 });
 
 import * as firebase from 'firebase-admin';
-import firebaseServiceAccountJson = require('./service-account-firebase.json');
+import firebaseServiceAccountJson = require('./../../service-account-key.json');
 
 firebase.initializeApp({
   credential: firebase.credential.cert(firebaseServiceAccountJson),

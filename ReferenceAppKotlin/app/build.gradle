@@ -17,6 +17,8 @@
 apply plugin: "com.android.application"
 apply plugin: "kotlin-android"
 apply plugin: "kotlin-parcelize"
+apply plugin: 'com.google.gms.google-services'  // Google Services plugin
+
 
 // Safe args allows the passing of data in bundles with type safety
 // See more at https://developer.android.com/guide/navigation/navigation-pass-data
@@ -67,20 +69,20 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    namespace 'com.android.tv.reference'
 }
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
 
     // AndroidX libraries
     def leanback_version = "1.2.0-alpha02"
-    def room_version = "2.4.2"
-    def fragment_version = "1.4.1"
-    def cast_tv_version = "17.0.0"
+    def room_version = "2.4.3"
+    def fragment_version = "1.5.2"
+    def cast_tv_version = "20.0.0"
     def cast_version = "19.0.0"
-    implementation "androidx.appcompat:appcompat:1.4.1"
+    implementation "androidx.appcompat:appcompat:1.5.1"
     implementation "androidx.core:core-ktx:1.7.0"
     implementation "androidx.fragment:fragment-ktx:$fragment_version"
     implementation "androidx.leanback:leanback:$leanback_version"
@@ -92,6 +94,15 @@ dependencies {
     kapt "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-ktx:$room_version"
 
+    //firebase
+    implementation platform('com.google.firebase:firebase-bom:30.3.1')
+    implementation 'com.google.firebase:firebase-auth-ktx'
+    implementation 'com.google.firebase:firebase-firestore-ktx'
+    implementation 'com.google.firebase:firebase-functions-ktx'
+    implementation 'com.firebaseui:firebase-ui-auth:7.2.0'
+
+    // https://mavenlibs.com/maven/dependency/org.jetbrains.kotlinx/kotlinx-coroutines-play-services
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.6.4")
     // Cast library used for Cast Connect feature
     implementation "com.google.android.gms:play-services-cast-tv:$cast_tv_version"
     implementation "com.google.android.gms:play-services-cast:$cast_version"
@@ -109,13 +120,13 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
 
     // Exoplayer for playback
-    def exoplayer_version = "2.17.1"
+    def exoplayer_version = "2.18.1"
     implementation "com.google.android.exoplayer:exoplayer-core:$exoplayer_version"
     implementation "com.google.android.exoplayer:extension-leanback:$exoplayer_version"
     implementation "com.google.android.exoplayer:extension-mediasession:$exoplayer_version"
 
     // Google Play Services for identity
-    def playservices_version = "20.1.0"
+    def playservices_version = "20.3.0"
     implementation "com.google.android.gms:play-services-auth:$playservices_version"
 
     // Moshi for JSON parsing
@@ -139,7 +150,7 @@ dependencies {
     testImplementation 'androidx.test.ext:junit:1.1.3'
     testImplementation "androidx.work:work-testing:$work_version"
     testImplementation "com.google.truth:truth:1.1.3"
-    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0-native-mt"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
     testImplementation "org.mockito:mockito-core:4.4.0"
     testImplementation 'org.mockito:mockito-inline:4.4.0'
     testImplementation 'org.robolectric:robolectric:4.7.3'

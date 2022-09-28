@@ -21,11 +21,13 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.DisplayMetrics
+import android.util.Log
 import androidx.leanback.app.BackgroundManager
 import androidx.leanback.app.BrowseSupportFragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.android.tv.reference.R
+import com.android.tv.reference.auth.UserManager.Companion.signInFragmentId
 import com.android.tv.reference.shared.datamodel.Video
 import com.android.tv.reference.shared.image.BlurImageTransformation
 import com.android.tv.reference.shared.image.OverlayImageTransformation
@@ -79,7 +81,7 @@ class BrowseFragment : BrowseSupportFragment(), Target {
         }
 
         val signInMenuItem = BrowseCustomMenu.MenuItem(getString(R.string.sign_in)) {
-            findNavController().navigate(R.id.action_global_signInFragment)
+            findNavController().navigate(signInFragmentId)
         }
         val signOutMenuItem = BrowseCustomMenu.MenuItem(getString(R.string.sign_out)) {
             viewModel.signOut()
@@ -95,12 +97,15 @@ class BrowseFragment : BrowseSupportFragment(), Target {
         viewModel.customMenuItems.observe(
             this,
             {
+                Timber.d("onCreate: customMenuItems")
                 adapter = BrowseAdapter(viewModel.browseContent.value ?: listOf(), it)
             }
         )
+        Timber.d( "onCreate: deneme")
         viewModel.isSignedIn.observe(
             this,
             {
+                Timber.d("onCreate: isSignedIn")
                 viewModel.customMenuItems.postValue(
                     listOf(
                         BrowseCustomMenu(

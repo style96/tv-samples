@@ -98,6 +98,7 @@ class MainActivity : FragmentActivity() {
                         Timber.w("Failed to load deep link $uri, ignoring", result.exception)
                         loadStartingPage()
                     }
+                    else -> throw AssertionError()
                 }
             }
         )

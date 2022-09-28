@@ -14,8 +14,7 @@
   ~ limitations under the License.
   -->
 
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.android.tv.reference">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Access internet-based media -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -42,6 +41,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
 
         <activity
